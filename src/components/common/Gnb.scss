@@ -1,0 +1,63 @@
+@use "../../assets/scss/mixins" as *;
+nav{
+  position: relative;
+  padding: 1rem 0;
+  div.mobile-toggle{
+    cursor: pointer;
+    @include flex-layout(row,flex-start);
+    color: var(--color-dark);
+    @include desktop{
+      display: none;
+    }
+    button{
+      background: none;
+      border: none;
+      font-size: 2rem;
+      line-height: 0;
+      cursor: pointer;
+      color: var(--color-dark);
+      &:hover{
+        color: var(--color-sub1);
+      }
+    }
+    span{
+      font-size: 1.3rem;  
+    }
+  }
+  div.menu-wrap{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    @include desktop{
+      @include flex-layout(row, space-between);
+    }
+  }
+  ul{
+    background-color: var(--color-gray);
+    padding: 1rem;
+    @include desktop{
+      @include flex-layout();
+    }
+    li{ padding: 0.5rem 0;}
+  }
+  ul.menu-top{
+    font-size: 1.1rem;
+    li{
+      border-bottom: 1px solid var(--color-dark);
+      cursor: pointer;
+      &:hover{
+        color: var(--color-primary);
+      }
+    }    
+  }
+  ul.menu-bottom{
+    color: var(--color-dark);
+    li{
+      cursor: pointer;
+      &:hover{
+        color: var(--color-sub1);
+        text-decoration: underline;
+      }
+    }
+  }
+}
