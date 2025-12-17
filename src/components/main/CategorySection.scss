@@ -1,13 +1,32 @@
 @use "../../assets/scss/mixins" as *;
 #category{
+  margin: 1rem auto;
   text-align: center;
+  h2{
+    display: inline-block;
+    @include btn-style(var(--color-sub2));
+  }
+  h3{
+    margin: 1rem 0 
+  }
   ul{
+    margin: 2rem 0;
     @include flex-layout();
     gap: 2rem;
     flex-wrap: wrap;
     li{
+      cursor: pointer;
+      transition: 0.5s;
+      img{
+        border-radius: 50%;
+        transition: 0.5s;
+      }
       &:hover{
-        
+        transform: translateY(-10px);
+        img{
+          box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+          transform: scale(1.1);
+        }
       }
     }
   }

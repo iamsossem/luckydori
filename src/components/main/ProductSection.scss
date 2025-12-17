@@ -1,0 +1,21 @@
+@use "../../assets/scss/mixins" as *;
+#product{
+  width: 80%;
+  max-width: 1024px;
+  margin: 5rem auto;
+  text-align: center;
+  p{
+    margin: 1rem 0;
+  }
+  .product-grid{
+    margin: 5rem 0;
+    text-align: center;
+    display: grid;
+    gap: 1.5rem;
+    // 모바일
+    grid-template-columns: repeat(2,1fr);
+    @include desktop{
+      grid-template-columns: repeat(4,1fr);
+    }
+  }
+}
