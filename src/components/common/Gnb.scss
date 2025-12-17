@@ -16,6 +16,7 @@ nav{
       line-height: 0;
       cursor: pointer;
       color: var(--color-dark);
+      transition: 0.3s;
       &:hover{
         color: var(--color-sub1);
       }
@@ -27,15 +28,32 @@ nav{
   div.menu-wrap{
     position: absolute;
     width: 100%;
-    left: 0;
+    left: 0;    
+    // display: none;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s;
+    &.on{
+      // display: block;
+      opacity: 1;
+      overflow: visible;
+      max-height: auto;
+    }
     @include desktop{
-      @include flex-layout(row, space-between);
+      opacity: 1;
+      overflow: visible;
+      max-height: auto;
+      display: flex !important;  //무조건 실행
+      @include flex-layout(row, space-between);   
+      top: 1.5rem;   
     }
   }
   ul{
     background-color: var(--color-gray);
     padding: 1rem;
     @include desktop{
+      background: none;
       @include flex-layout();
     }
     li{ padding: 0.5rem 0;}
@@ -47,6 +65,9 @@ nav{
       cursor: pointer;
       &:hover{
         color: var(--color-primary);
+      }
+      @include desktop{
+        border-bottom: none;
       }
     }    
   }

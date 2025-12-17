@@ -1,0 +1,14 @@
+@use "../../assets/scss/mixins" as *;
+#category{
+  text-align: center;
+  ul{
+    @include flex-layout();
+    gap: 2rem;
+    flex-wrap: wrap;
+    li{
+      &:hover{
+        
+      }
+    }
+  }
+}
