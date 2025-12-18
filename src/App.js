@@ -59,7 +59,10 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<MainPage onAdd={handleAddCart}/>}/>
+          <Route 
+            path="/" 
+            element={<MainPage onAdd={handleAddCart}/>}
+          />
           <Route 
             path="/cart" 
             element={
@@ -70,7 +73,10 @@ const App = () => {
               />
             }
           />
-          <Route path="/category" element={<CategoryPage />} />
+          <Route 
+            path="/category/:categoryName" 
+            element={<CategoryPage onAdd={handleAddCart} />} 
+          />
         </Route>
       </Routes>
     </BrowserRouter>

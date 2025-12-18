@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./CartPage.scss";
+import { useNavigate } from "react-router-dom";
 const CartPage = ({cartItems,onUpdate,onDelete}) => {
+  const navigate = useNavigate();
   const [totalPrice, setTotalPrice] = useState(0);
   const [cartView, setCartView] = useState(false);
   useEffect(()=>{
@@ -20,7 +22,7 @@ const CartPage = ({cartItems,onUpdate,onDelete}) => {
         !cartView && (
           <div className="cart-zero">
             <div>장바구니가 비었습니다</div>
-            <button>쇼핑하러 가기</button>
+            <button onClick={()=>{navigate('/')}}>쇼핑하러 가기</button>
           </div>
         )
       }
