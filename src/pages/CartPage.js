@@ -23,9 +23,9 @@ const CartPage = ({cartItems}) => {
                       <p>￦ {Number(item.price).toLocaleString()}</p>
                     
                       <div className="count-wrap">
-                        <button>-</button>
+                        <button onClick={handleMinus}>-</button>
                         <span>{item.quantity}</span>
-                        <button>+</button>
+                        <button onClick={handlePlus}>+</button>
                       </div>
                     </div>
                   </div>

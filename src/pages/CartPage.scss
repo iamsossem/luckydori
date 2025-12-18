@@ -10,10 +10,27 @@
     flex-direction: row;
   }
   .cart-list{
+    padding: 1rem 2rem;
     li{
-      @include flex-layout();
+      @include flex-layout(row,space-between);
+      .img-box{
+        width: 20%;
+        img{width: 100%;}
+      }
       .price-wrap{
+        flex: 1;
         @include flex-layout(row,flex-start);
+        span{
+          display: inline-block;
+          width: 30px;
+          text-align: center;
+        }
+        button{ 
+          width: 30px;
+        }
+      }
+      > button{
+        width: 100px;
       }
     }
   }
