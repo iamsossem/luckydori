@@ -1,11 +1,31 @@
+import { useEffect, useState } from "react";
 import "./CartPage.scss";
-const CartPage = ({cartItems}) => {
-  const handleMinus = ()=>{}
-  const handlePlus = ()=>{}
+const CartPage = ({cartItems,onUpdate,onDelete}) => {
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [cartView, setCartView] = useState(false);
+  useEffect(()=>{
+    if( cartItems.length <= 0 ){ setCartView(false); } 
+    else { setCartView(true); }
+    //전체 총 금액 처리
+    const total = cartItems.reduce((acc,item)=>{
+      return acc + (item.price * item.quantity)
+    },0);
+    setTotalPrice(total);
+  },[cartItems]);
   return (
     <div className="cart-page">
       <h2>쇼핑카트</h2>
       <p>주문하실 상품을 확인해 주세요</p>
+      {
+        !cartView && (
+          <div className="cart-zero">
+            <div>장바구니가 비었습니다</div>
+            <button>쇼핑하러 가기</button>
+          </div>
+        )
+      }
+      {
+        cartView && (
       <div className="cart-wrap">
         {/* 상품목로 */}
         <ul className="cart-list">
@@ -25,13 +45,19 @@ const CartPage = ({cartItems}) => {
                       <p>￦ {Number(item.price).toLocaleString()}</p>
                     
                       <div className="count-wrap">
-                        <button onClick={handleMinus}>-</button>
+                        <button 
+                          onClick={()=>{onUpdate(item.id,"minus")}}
+                        >-</button>
                         <span>{item.quantity}</span>
-                        <button onClick={handlePlus}>+</button>
-                      </div>
+                        <button 
+                          onClick={()=>{onUpdate(item.id,"plus")}}
+                        >+</button>
+                      </div>                      
                     </div>
+                    {/* 합계계산 */}
+                      <p>￦ {Number(item.price * item.quantity).toLocaleString()}</p>
                   </div>
-                  <button>삭제</button>
+                  <button onClick={()=>{onDelete(item.id)}}>삭제</button>
                 </li>
               )
             })
@@ -49,11 +75,12 @@ const CartPage = ({cartItems}) => {
           </div>
           <div className="summary-total">
             <span>총 결제 금액</span>
-            <span>￦ </span>
+            <span>￦ {totalPrice.toLocaleString()}</span>
           </div>
           <button>주문하기</button>
         </div>
       </div>
+      )}
     </div>
   )
 }

@@ -33,12 +33,43 @@ const App = () => {
       setCartItems(items);
     }
   }
+  const handleUpdateQuantity = (id,type)=>{
+    const update = cartItems.map((item)=>{      
+      if(item.id === id) {
+        if( type === 'plus') {
+          //수량이 증가
+          return {...item, quantity: item.quantity+1};
+        } else if( type === 'minus' && item.quantity>1 ) {
+          //수량을 감소
+          return {...item, quantity: item.quantity-1};
+        }
+      }
+      return item;
+    });
+    setCartItems(update);
+  }
+  const handleCartDelete = (id)=>{
+    //id를 제외한 새로운 배열이 만들어지면 됨
+    const items = cartItems.filter((item)=>{
+      return item.id !== id;
+    });
+    setCartItems(items);
+  }
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<MainPage onAdd={handleAddCart}/>}/>
-          <Route path="/cart" element={<CartPage cartItems={cartItems}/>}/>
+          <Route 
+            path="/cart" 
+            element={
+              <CartPage 
+                cartItems={cartItems} 
+                onUpdate={handleUpdateQuantity}
+                onDelete={handleCartDelete}
+              />
+            }
+          />
           <Route path="/category" element={<CategoryPage />} />
         </Route>
       </Routes>
