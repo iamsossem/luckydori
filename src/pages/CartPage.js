@@ -1,3 +1,4 @@
+import "./CartPage.scss";
 const CartPage = ({cartItems}) => {
   return (
     <div className="cart-page">
@@ -20,11 +21,12 @@ const CartPage = ({cartItems}) => {
                     <h3>{item.title}</h3>
                     <div className="price-wrap">
                       <p>￦ {Number(item.price).toLocaleString()}</p>
-                    </div>
-                    <div className="count-wrap">
-                      <button>-</button>
-                      <span>{item.quantity}</span>
-                      <button>+</button>
+                    
+                      <div className="count-wrap">
+                        <button>-</button>
+                        <span>{item.quantity}</span>
+                        <button>+</button>
+                      </div>
                     </div>
                   </div>
                   <button>삭제</button>
@@ -35,6 +37,19 @@ const CartPage = ({cartItems}) => {
         </ul>
         <div className="cart-summary">
           <h3>주문 예상 금액</h3>
+          <div className="summary-wrap">
+            <span>총 상품 금액</span>
+            <span>￦ </span>
+          </div>
+          <div className="summary-wrap">
+            <span>배송비</span>
+            <span>￦ 0 (무료)</span>
+          </div>
+          <div className="summary-total">
+            <span>총 결제 금액</span>
+            <span>￦ </span>
+          </div>
+          <button>주문하기</button>
         </div>
       </div>
     </div>

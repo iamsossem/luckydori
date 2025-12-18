@@ -1,0 +1,24 @@
+@use "../assets/scss/mixins" as *;
+.cart-page{
+  margin: 2rem 0;
+  h2{text-align: center;}
+  p{text-align: center;}  
+}
+.cart-wrap{
+  @include flex-layout(column);
+  @include desktop{
+    flex-direction: row;
+  }
+  .cart-list{
+    li{
+      @include flex-layout();
+      .price-wrap{
+        @include flex-layout(row,flex-start);
+      }
+    }
+  }
+  .cart-summary{
+    .summary-wrap{}
+    .summary-total{}
+  }
+}
