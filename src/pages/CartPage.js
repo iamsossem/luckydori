@@ -1,5 +1,7 @@
 import "./CartPage.scss";
 const CartPage = ({cartItems}) => {
+  const handleMinus = ()=>{}
+  const handlePlus = ()=>{}
   return (
     <div className="cart-page">
       <h2>쇼핑카트</h2>
