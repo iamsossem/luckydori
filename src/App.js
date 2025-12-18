@@ -4,14 +4,41 @@ import MainPage from "./pages/MainPage"
 import CartPage from "./pages/CartPage"
 import CategoryPage from "./pages/CategoryPage"
 import "./assets/scss/global.scss";
+import { useState } from "react"
 
 const App = () => {
+  const [cartItems,setCartItems] = useState([]);
+  /**
+   * 장바구니 목록 만들려면
+   * 1. 해당 아이템이 있는지 없는지체크
+   * 2. 없으면 --> 리스트에 추가
+   * 3. 있으면 --> 추가되어 있는 리스트의 수량을 증가
+   */
+  const handleAddCart = (product)=>{
+    //카트 목록에 아이템이 있는지 없는지 체크 : find
+    const existItem = cartItems.find((item)=>{
+      return item.id === product.id
+    });
+    if( existItem ){
+      //수량만 증가 : map
+      const items = cartItems.map((cart)=>{
+        return (
+          cart.id === product.id ? {...cart,quantity: cart.quantity+1} : cart
+        )
+      });
+      setCartItems(items);
+    } else {
+      //cartItems에 추가
+      const items = [...cartItems, {...product,quantity:1}];
+      setCartItems(items);
+    }
+  }
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<MainPage />}/>
-          <Route path="/cart" element={<CartPage />}/>
+          <Route path="/" element={<MainPage onAdd={handleAddCart}/>}/>
+          <Route path="/cart" element={<CartPage cartItems={cartItems}/>}/>
           <Route path="/category" element={<CategoryPage />} />
         </Route>
       </Routes>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import productList from "../../assets/data/products.json"
 import ProductCard from "../ui/ProductCard"
 import "./ProductSection.scss"
-const ProductSection = () => {
+const ProductSection = ({onAdd}) => {
   const [bestItems,setBestItems] = useState([]);
   useEffect(()=>{
     // isBest값이 true 상태목록만 저장
@@ -23,6 +23,7 @@ const ProductSection = () => {
               <ProductCard 
                 key={item.id}
                 item={item}
+                onAdd={onAdd}
               />
             )
           })
